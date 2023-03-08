@@ -1,8 +1,8 @@
-FROM alpine:3.16
+FROM alpine:3.17
 
 LABEL "com.viles.registry"="General Tools Image"
-LABEL com.viles.registry-image-base="alpine:3.16.1"
-LABEL version="0.0.1"
+LABEL com.viles.registry-image-base="alpine:3.17"
+LABEL version="0.0.2"
 LABEL description="This image can be used as a base for all other images and contains generic tools."
 
 RUN apk update
