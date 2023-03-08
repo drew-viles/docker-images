@@ -1,8 +1,8 @@
-FROM php:8.0-fpm-buster
+FROM php:8.2-fpm
 
 LABEL "uk.hudson-viles.registry"="PHP PDO"
-LABEL uk.hudson-viles.registry-image-base="php:8.0.25-fpm"
-LABEL version="0.0.1"
+LABEL uk.hudson-viles.registry-image-base="8.2-fpm"
+LABEL version="0.0.2"
 LABEL description="This PHP Image is just a basic one, created off the back of the standard PHP Image. \
                    The only difference with it is it has the PDO extensions enabled to enable MySQL communication via a PHP project.\
                    This was designed to be used in Kubernetes where the docker-php-ext-install pdo pdo_mysql pdo_pgsql would not be able to be run without a intervention somewhere.\
