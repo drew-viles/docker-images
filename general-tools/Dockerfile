@@ -1,4 +1,4 @@
-FROM alpine:3.16.1
+FROM alpine:3.16
 
 LABEL "com.viles.registry"="General Tools Image"
 LABEL com.viles.registry-image-base="alpine:3.16.1"
