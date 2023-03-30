@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.2-rc-fpm-buster
 
 LABEL "uk.hudson-viles.registry"="PHP PDO"
 LABEL uk.hudson-viles.registry-image-base="8.2-fpm"
