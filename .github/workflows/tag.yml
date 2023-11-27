@@ -1,0 +1,58 @@
+name: Build on Tag
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  security-checks:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    strategy:
+      max-parallel: 5
+      matrix:
+        image-name:
+          - general-tools
+          - php-pdo
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: Build Image
+        uses: eschercloudai/container-security-action@v0.0.2
+        with:
+          use-dockerhub: true
+          image-repo: "drewviles"
+          repo-username: ${{ secrets.DOCKER_USER }}
+          repo-password: ${{ secrets.DOCKER_PASSWORD }}
+          image-name: ${{ matrix.image-name }}
+          image-tag: ${{ github.ref_name }}
+          check-severity: CRITICAL
+          trivyignore-from-s3: false
+          publish-image: true
+          cosign-private-key: ${{secrets.COSIGN_KEY}}
+          cosign-password: ${{secrets.COSIGN_PASSWORD}}
+          cosign-tlog: true
+          dockerfile-path: ${{ matrix.image-name }}
+
+  release:
+    name: Create Release
+    runs-on: 'ubuntu-22.04'
+    needs: security-checks
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Release Notes
+        run: |
+          git log $(git describe HEAD~ --tags --abbrev=0)..HEAD --pretty='format:* %h %s%n  * %an <%ae>' --no-merges >> ".github/RELEASE-TEMPLATE.md"
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: ".github/RELEASE-TEMPLATE.md"
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

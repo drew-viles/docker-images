@@ -1,8 +1,7 @@
-FROM alpine:3.17
+FROM cgr.dev/chainguard/wolfi-base:latest
 
-LABEL "com.viles.registry"="General Tools Image"
-LABEL com.viles.registry-image-base="alpine:3.17"
-LABEL version="0.0.2"
+LABEL "uk.hudson-viles.registry"="General Tools Image"
+LABEL uk.hudson-viles.registry-image-base="wolfi-base:latest"
 LABEL description="This image can be used as a base for all other images and contains generic tools."
 
 RUN apk update
