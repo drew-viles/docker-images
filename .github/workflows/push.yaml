@@ -19,7 +19,7 @@ jobs:
       max-parallel: 5
       matrix:
         image-name:
-          - general-tools
+          - samba
           - php-pdo
     steps:
       - name: Checkout Repo
