@@ -22,7 +22,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Build Local Image
-        uses: eschercloudai/container-security-action@v0.0.2
+        uses: eschercloudai/container-security-action@v0.0.3
         if: github.event_name == 'pull_request'
         with:
           use-dockerhub: true
