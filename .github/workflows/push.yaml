@@ -19,7 +19,7 @@ jobs:
       max-parallel: 5
       matrix:
         image-name:
-          - general-tools
+          - samba
           - php-pdo
     steps:
       - name: Checkout Repo
@@ -33,7 +33,7 @@ jobs:
           repo-username: ${{ secrets.DOCKER_USER }}
           repo-password: ${{ secrets.DOCKER_PASSWORD }}
           image-name: ${{ matrix.image-name }}
-          image-tag: ${{ github.ref_name }}
+          image-tag: v0.0.0
           check-severity: CRITICAL
           trivyignore-from-s3: false
           publish-image: false
