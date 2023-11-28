@@ -33,7 +33,7 @@ jobs:
           repo-username: ${{ secrets.DOCKER_USER }}
           repo-password: ${{ secrets.DOCKER_PASSWORD }}
           image-name: ${{ matrix.image-name }}
-          image-tag: ${{ github.ref_name }}
+          image-tag: v0.0.0
           check-severity: CRITICAL
           trivyignore-from-s3: false
           publish-image: false
