@@ -32,6 +32,7 @@ jobs:
           image-tag: ${{ github.ref_name }}
           check-severity: CRITICAL
           trivyignore-from-s3: false
+          add-latest-tag: true
           publish-image: true
           cosign-private-key: ${{secrets.COSIGN_KEY}}
           cosign-password: ${{secrets.COSIGN_PASSWORD}}
