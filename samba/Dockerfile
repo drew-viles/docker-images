@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:24.04
 
 ENV SMB_USER="some_user"
 ENV SMB_PASSWD="some_password"
