@@ -16,6 +16,7 @@ jobs:
       max-parallel: 5
       matrix:
         image-name:
+          - github-runner
           - samba
           - php-pdo
     steps:
