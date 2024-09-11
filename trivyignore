@@ -1,1 +1,6 @@
 # Ignored CVEs
+
+# GitHub Runner issues - Need to be patched by GitHub
+CVE-2022-25883
+CVE-2019-0980
+CVE-2019-0981

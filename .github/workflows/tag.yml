@@ -7,7 +7,7 @@ on:
 
 jobs:
   security-checks:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
@@ -16,21 +16,21 @@ jobs:
       max-parallel: 5
       matrix:
         image-name:
+          - github-runner
           - samba
           - php-pdo
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Build Image
-        uses: drewbernetes/container-security-action@v0.0.2
+        uses: drewbernetes/container-security-action@v0.0.4
         with:
-          use-dockerhub: true
           image-repo: "drewviles"
           repo-username: ${{ secrets.DOCKER_USER }}
           repo-password: ${{ secrets.DOCKER_PASSWORD }}
           image-name: ${{ matrix.image-name }}
           image-tag: ${{ github.ref_name }}
-          check-severity: CRITICAL
+          check-severity: "HIGH,CRITICAL"
           trivyignore-from-s3: false
           add-latest-tag: true
           publish-image: true
@@ -41,7 +41,7 @@ jobs:
 
   release:
     name: Create Release
-    runs-on: 'ubuntu-22.04'
+    runs-on: ubuntu-24.04
     needs: security-checks
     steps:
       - uses: actions/checkout@v3
