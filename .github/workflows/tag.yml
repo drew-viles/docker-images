@@ -32,7 +32,7 @@ jobs:
           repo-password: ${{ secrets.DOCKER_PASSWORD }}
           image-name: ${{ matrix.image-name }}
           image-tag: ${{ github.ref_name }}
-          check-severity: "HIGH,CRITICAL"
+          check-severity: "high"
           grypeignore-from-s3: true
           s3-endpoint: "https://api.s3.hudson-viles.uk"
           s3-access-key: ${{secrets.S3_ACCESS_KEY}}
